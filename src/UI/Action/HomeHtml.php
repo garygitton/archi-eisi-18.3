@@ -8,23 +8,24 @@ use App\Infrastructure\Repository\Invoice;
 use App\UI\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Twig\Environment;
 
-final class Home
+final class HomeHtml
 {
     private $invoiceRepository;
-    private $serializer;
 
-    public function __construct(Invoice $invoiceRepository, Serializer $serializer)
+    private $renderer;
+
+    public function __construct(Invoice $invoiceRepository, Environment $renderer)
     {
         $this->invoiceRepository = $invoiceRepository;
-        $this->serializer = $serializer;
+        $this->renderer = $renderer;
     }
 
     public function handle(): Response
     {
-        return new JsonResponse([
-            'success' => true,
-            'invoices' => $this->serializer->serialize($this->invoiceRepository->findAll()),
-        ]);
+        return new Response($this->renderer->render('home.html.twig', [
+            'invoices' => $this->invoiceRepository->findAll()
+        ]));
     }
 }

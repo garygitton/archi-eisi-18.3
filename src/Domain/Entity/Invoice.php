@@ -6,9 +6,8 @@ namespace App\Domain\Entity;
 
 use App\Domain\ValueObject\Uuid;
 use DateTimeInterface;
-use JsonSerializable;
 
-class Invoice implements JsonSerializable
+class Invoice
 {
     private $uuid;
 
@@ -20,11 +19,13 @@ class Invoice implements JsonSerializable
         $this->creationDate = $creationDate;
     }
 
-    public function jsonSerialize()
+    public function date(): DateTimeInterface
     {
-        return [
-            'id' => $this->uuid->toString(),
-            'creation_date' => $this->creationDate->format(DateTimeInterface::ATOM),
-        ];
+        return $this->creationDate;
+    }
+
+    public function id(): string
+    {
+        return $this->uuid->toString();
     }
 }

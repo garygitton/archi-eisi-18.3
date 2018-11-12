@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <ul>
+    {% for invoice in invoices %}
+        <li>
+            <ul>
+                <li>{{ invoice.id }}</li>
+                <li>{{ invoice.date | date('m/d/Y') }}</li>
+            </ul>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
