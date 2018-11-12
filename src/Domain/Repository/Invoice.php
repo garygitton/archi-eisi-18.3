@@ -9,7 +9,7 @@ use App\Domain\Collection\Invoice as InvoiceCollection;
 interface Invoice
 {
     /**
-     * @return array
+     * @return InvoiceCollection
      * @throws \Exception
      */
     public function findAll(): InvoiceCollection;

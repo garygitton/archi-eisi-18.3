@@ -13,7 +13,7 @@ use DateTimeImmutable;
 final class Invoice implements InvoiceRepositoryInterface
 {
     /**
-     * @return array
+     * @return InvoiceCollection
      * @throws \Exception
      */
     public function findAll(): InvoiceCollection
