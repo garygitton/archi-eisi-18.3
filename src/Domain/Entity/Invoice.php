@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Domain\Entity;
 
+use App\Domain\ValueObject\Uuid;
 use DateTimeInterface;
 use JsonSerializable;
-use Ramsey\Uuid\UuidInterface;
 
 class Invoice implements JsonSerializable
 {
@@ -14,7 +14,7 @@ class Invoice implements JsonSerializable
 
     private $creationDate;
 
-    public function __construct(UuidInterface $uuid, DateTimeInterface $creationDate)
+    public function __construct(Uuid $uuid, DateTimeInterface $creationDate)
     {
         $this->uuid = $uuid;
         $this->creationDate = $creationDate;
