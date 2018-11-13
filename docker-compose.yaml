@@ -28,3 +28,5 @@ services:
       - PMA_HOST=database
     ports:
       - 9000:80
+  cache:
+    image: redis:4
