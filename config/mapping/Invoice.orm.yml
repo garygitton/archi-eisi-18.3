@@ -1,0 +1,15 @@
+App\Domain\Entity\Invoice:
+  type: entity
+  repositoryClass: App\Infrastructure\Repository\Invoice
+  table: invoices
+  schema: db_name
+  readOnly: false
+  id:
+    uuid:
+      type: app_invoice_uuid
+      generator:
+        strategy: NONE
+  fields:
+    creationDate:
+      name: creation_date
+      type: datetimeimmutable

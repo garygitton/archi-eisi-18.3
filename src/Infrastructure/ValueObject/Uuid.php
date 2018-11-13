@@ -22,6 +22,16 @@ final class Uuid implements UuidInterface
         return new self(ThirdPartyUuid::uuid4());
     }
 
+    public static function fromString($value): UuidInterface
+    {
+        return new self(ThirdPartyUuid::fromString($value));
+    }
+
+    public static function isValid(string $param): bool
+    {
+        return ThirdPartyUuid::isValid($param);
+    }
+
     public function toString(): string
     {
         return $this->uuid->toString();

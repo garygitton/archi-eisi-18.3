@@ -1,0 +1,30 @@
+version: "3.6"
+
+services:
+  app:
+    build:
+      context: resources/env/local
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html:cached
+    environment:
+      - APP_ENV=dev
+      - APP_SECRET=02836a80839f0a856701091dfa2728a8
+      - DATABASE_URL=mysql://db_user:db_password@database:3306/db_name
+  database:
+    image: mysql:5.7
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_USER=db_user
+      - MYSQL_PASSWORD=db_password
+      - MYSQL_DATABASE=db_name
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:4.8 
+    environment:
+      - MYSQL_USER=db_name
+      - MYSQL_PASSWORD=db_password
+      - PMA_HOST=database
+    ports:
+      - 9000:80
