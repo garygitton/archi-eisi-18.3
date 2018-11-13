@@ -36,4 +36,9 @@ final class Uuid implements UuidInterface
     {
         return $this->uuid->toString();
     }
+
+    public function __toString()
+    {
+        return $this->toString();
+    }
 }

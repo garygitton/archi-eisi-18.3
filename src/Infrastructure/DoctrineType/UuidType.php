@@ -13,7 +13,7 @@ use Doctrine\DBAL\Platforms\AbstractPlatform;
 
 final class UuidType extends Type
 {
-    const NAME = 'app_invoice_uuid';
+    public const NAME = 'app_invoice_uuid';
 
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
@@ -41,14 +41,11 @@ final class UuidType extends Type
         if (empty($value)) {
             return null;
         }
-        if (
-            $value instanceof UuidInterface
-            || (
-                (is_string($value) || method_exists($value, '__toString'))
-                && Uuid::isValid((string) $value)
-            )
-        ) {
-            return (string) $value;
+        if ($value instanceof UuidInterface) {
+            $value = $value->toString();
+        }
+        if ((is_string($value) || method_exists($value, '__toString')) && Uuid::isValid($value)) {
+            return $value;
         }
         throw ConversionException::conversionFailed($value, static::NAME);
     }

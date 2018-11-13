@@ -1,6 +1,5 @@
 App\Domain\Entity\Invoice:
   type: entity
-  repositoryClass: App\Infrastructure\Repository\Invoice
   table: invoices
   schema: db_name
   readOnly: false
@@ -12,4 +11,4 @@ App\Domain\Entity\Invoice:
   fields:
     creationDate:
       name: creation_date
-      type: datetimeimmutable
+      type: datetime_immutable
